@@ -1,0 +1,441 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <span id="{{reqUser}}">User_ID = {{reqUser}} </span>
+      <i class="fas fa-chevron-right"></i> <a href="/members">Members</a>
+      <i class="fas fa-chevron-right"></i> <a href="/members/maintain">Maintainence</a>
+      <i class="fas fa-chevron-right"></i> <B> Jobs </b>
+      <a class="navbar-brand" href="/logout">
+        Logout
+      </a>
+    </div>
+  </div>
+</nav>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+      <P> CRUD page for Job_Application (job.js)</P>
+
+
+      <table class="table" id="results">
+        <thead>
+          <tr>
+            <th>Job ID</th>
+            <th>Title</th>
+            <th>Location</th>
+            <th>Company</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each job_application}}
+
+          <tr>
+            {{!-- <td>{{this}}</td> --}}
+            <td>{{dataValues.id}}</td>
+            <td>{{dataValues.job_title}}</td>
+            <td>{{dataValues.location}}</td>
+            <td>{{dataValues.company_id}}</td>
+            <td>{{dataValues.status}}</td>
+            <td>
+              <a href="javascript:void(0);" class="btn btn-sm btn-warning edit" data-id="{{ dataValues.id }}"
+                data-userid="{{../reqUser}}" data-toggle="modal" data-target="#updatejobModal">Edit</a>
+              <a href="javascript:void(0);" class="btn btn-sm btn-danger delete" data-id="{{ dataValues.id }}"
+                data-userid="{{../reqUser}}">Delete</a>
+            </td>
+          </tr>
+          {{else}}
+          <tr>
+            <td colspan="6" class="text-center">No data to display.</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+
+      <button class="btn btn-success" data-toggle="modal" data-target="#newjobModal">Add New</button>
+
+      <!--- this is the create form--->
+
+      <form action="/api/job" id="createform" method="post">
+        <div class="modal fade" id="newjobModal" role="dialog">
+          <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">New job</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                  <span>&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+
+                <div class="form-group">
+                  <input type="hidden" id="user_id1" value="{{reqUser}}" class="form-control" placeholder=""
+                    required="required">
+                </div>
+
+                <div class="form-group">
+                  <label for="job_title">Job Title (required):</label>
+                  <input type="text" id="job_title" class="form-control" placeholder="job title" required="required"
+                    maxlength=254>
+                </div>
+
+                <div class="form-group">
+                  <label for="description">Job Description (required):</label>
+                  <input type="text" id="description" class="form-control" placeholder="description" required="required"
+                    maxlength=254>
+                </div>
+
+                <div class="form-group">
+                  <label for="requirement">Requirements:</label>
+                  <input type="text" id="requirement" class="form-control" placeholder="requirement"
+                    required="required">
+                </div>
+
+                <div class="form-group">
+                  <label for="job_title">Where is this job:</label>
+                  <input type="text" id="location1" class="form-control" placeholder="location" required="required"
+                    maxlength=254>
+                </div>
+
+                {{!-- <div class="form-group">
+                  <input type="number" id="company_id1" class="form-control" placeholder="1">
+                </div> --}}
+
+                <label for="company_id1">Company Name</label>
+                <select id="company_id1" class="form-control">
+                </select>
+
+
+                {{!-- <div class="form-group">
+                  <input type="number" id="contact_id1" class="form-control" placeholder="1">
+                </div> --}}
+
+                <label for="contact_id1">Contact Name</label>
+                <select id="contact_id1" class="form-control">
+                </select>
+
+
+                {{!-- <div class="form-group">
+                  <input type="number" id="resume_id" class="form-control" placeholder="1">
+                </div> --}}
+
+                <label for="resume_id">Resume attached</label>
+                <select id="resume_id" class="form-control">
+                </select>
+
+
+                <div class="form-group">
+                  <input type="text" id="status1" class="form-control" placeholder="Wishlist">
+                </div>
+
+                <div class="form-group">
+                  <input type="text" id="notes" class="form-control" placeholder="notes">
+                </div>
+
+                <div class="form-group">
+                  <input type="number" id="rating" class="form-control" placeholder="5.0">
+                </div>
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn create" id="btnCreate" name="btnCreate"
+                  data-dismiss="modal">Create</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <!--- this form is for editing --->
+
+      <form action="/api/job" id="updateform" method="put">
+        <div class="modal fade" id="updatejobModal" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Edit job</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                  <span>&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+
+                <div class="form-group">
+                  <input type="text" id="ide" value="" class="form-control" placeholder="" required="required" readonly>
+                </div>
+
+                <div class="form-group">
+                  <input type="hidden" id="user_id1e" value="{{reqUser}}" class="form-control" placeholder=""
+                    required="required">
+                </div>
+
+                <div class="form-group">
+                  <input type="text" id="job_titlee" class="form-control" placeholder="job title" required="required">
+                </div>
+
+                <div class="form-group">
+                  <input type="text" id="descriptione" class="form-control" placeholder="description"
+                    required="required">
+                </div>
+
+                <div class="form-group">
+                  <input type="text" id="requiremente" class="form-control" placeholder="requirement"
+                    required="required">
+                </div>
+
+                <div class="form-group">
+                  <input type="text" id="location1e" class="form-control" placeholder="location" required="required">
+                </div>
+
+                {{!-- <div class="form-group">
+                  <input type="number" id="company_id1e" class="form-control" placeholder="1">
+                </div> --}}
+
+                <label for="company_id1e">Company Name</label>
+                <select id="company_id1e" class="form-control">
+                </select>
+
+                {{!-- <div class="form-group">
+                  <input type="number" id="contact_id1e" class="form-control" placeholder="1">
+                </div> --}}
+
+                <label for="contact_id1e">Contact Name</label>
+                <select id="contact_id1e" class="form-control">
+                </select>
+
+                {{!-- <div class="form-group">
+                  <input type="number" id="resume_ide" class="form-control" placeholder="1">
+                </div> --}}
+
+                <label for="resume_ide">Resume attached</label>
+                <select id="resume_ide" class="form-control">
+                </select>
+
+
+                <div class="form-group">
+                  <input type="text" id="status1e" class="form-control" placeholder="Wishlist">
+                </div>
+
+                <div class="form-group">
+                  <input type="text" id="notese" class="form-control" placeholder="notes">
+                </div>
+
+                <div class="form-group">
+                  <input type="number" id="ratinge" class="form-control" placeholder="5.0">
+                </div>
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn create" id="btnCommit" name="btnCommit"
+                  data-dismiss="modal">Commit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-1"></div>
+
+  </div>
+</div>
+<!--- divider --->
+
+
+<script>
+  //create form
+  $(document).ready(function () {
+
+    // must populate 1 and 2 lists out of 6...
+    $.getJSON("/api/company", { user_id: {{ reqUser }} }, function (response, status) {
+      if (status == "success") {
+        //console.log(response);
+        for (var i = 0; i < response.length; i++) {
+          var str = response[i].company
+          var sid = response[i].id
+          $("#company_id1").append("<option value=" + sid + ">" + str + "</option>")
+          $("#company_id1e").append("<option value=" + sid + ">" + str + "</option>")
+        }
+      }
+    });
+  // must populate 3 and 4 out of 6 lists
+  $.getJSON("/api/contact", { user_id: {{ reqUser }} }, function (response, status) {
+    if (status == "success") {
+      console.log(response);
+      for (var i = 0; i < response.length; i++) {
+        var str = response[i].name + "(" + response[i].title + ")"
+        var sid = response[i].id
+        $("#contact_id1").append("<option value=" + sid + ">" + str + "</option>")
+        $("#contact_id1e").append("<option value=" + sid + ">" + str + "</option>")
+      }
+    }
+  });
+
+  // must populate 5 and 6 out of 6 lists
+  $.getJSON("/api/resume", { user_id: {{ reqUser }} }, function (response, status) {
+    if (status == "success") {
+      console.log(response);
+      for (var i = 0; i < response.length; i++) {
+        var str = response[i].fileName + "(" + response[i].role + ")"
+        var sid = response[i].id
+        $("#resume_id").append("<option value=" + sid + ">" + str + "</option>")
+        $("#resume_ide").append("<option value=" + sid + ">" + str + "</option>")
+      }
+    }
+  });
+
+
+
+
+
+  //create 
+  $('#createform').on('click', '#btnCreate', function (e) {
+    e.preventDefault();
+
+    var userid = $("#user_id1").val();
+    var jobtitle = $("#job_title").val();
+    var descriptionx = $("#description").val();
+    var requirement = $("#requirement").val();
+    var location1 = $("#location1").val();
+    var companyid = $("#company_id1").val()
+    var contactid = $("#contact_id1").val()
+    var resume_id = $("#resume_id").val()
+    var status1 = $("#status1").val()
+    var notesx = $("#notes").val();
+    var rating = $("#rating").val()
+    console.log("create job button pushed [", userid, "] [", jobtitle, "] [", companyid, "] [", status1, "] ");
+
+    myData = {
+      user_id1: userid,
+      jobtitle: jobtitle,
+      description: descriptionx,
+      requirement: requirement,
+      location1: location1,
+      company_id: companyid,
+      contact_id: contactid,
+      resume_id: resume_id,
+      status1: status1,
+      notes: notesx,
+      rating: rating
+    }
+
+    console.log(myData)
+
+    $.ajax({
+      url: "/api/job",
+      type: "POST",
+      data: myData,
+      dataType: "json",
+      success: function (data) {
+        console.log(data);
+        //location.reload(); // force reload to see new entry
+      },
+      error: function (error) {
+        console.log("Error ")
+        console.log(error);
+      }
+    });
+  });
+
+  // this is edit... 
+
+  $('#results').on('click', '.edit', function (e) {
+    e.preventDefault();
+
+    //query single ID:
+    var id = $(this).data("id");
+    var user_id = $(this).data("userid");
+
+    $.ajax({
+      url: "/api/job/" + id,
+      type: "GET",
+      dataType: "json"
+    })
+      .then((updateJob) => {
+        console.log("updateJob = ", updateJob)
+
+        var jobtitle = updateJob.job_title;
+        var descriptionx = updateJob.description;
+        var requirement = updateJob.requirement;
+        var location1 = updateJob.location;
+        var companyid = updateJob.company_id;
+        var contactid = updateJob.contact_id;
+        var resume_id = updateJob.resume_id;
+        var status1 = updateJob.status;
+        var notesx = updateJob.notes;
+        var rating = updateJob.rating;
+        console.log("edit job button pushed [", user_id, "] [", jobtitle, "] [", companyid, "] [", status1, "] ");
+
+        // got it from the database, push it to modal
+
+        $("#user_id1e").val(user_id)
+        $("#ide").val(id)
+        $("#job_titlee").val(jobtitle)
+        $("#descriptione").val(descriptionx)
+        $("#requiremente").val(requirement)
+        $("#location1e").val(location1)
+        $("#company_id1e").val(companyid)
+        $("#contact_id1e").val(contactid)
+        $("#resume_ide").val(resume_id)
+        $("#status1e").val(status1)
+        $("#notese").val(notesx)
+        $("#ratinge").val(rating)
+
+        $('#updateform').on('click', '.commit', function () {
+
+          // now we read them back into variables
+          var id = $("#ide").val()
+          var userid = $("#user_id1e").val();
+          var jobtitle = $("#job_titlee").val();
+          var descriptionx = $("#descriptione").val();
+          var requirement = $("#requiremente").val();
+          var location1 = $("#location1e").val();
+          var companyid = $("#company_id1e").val()
+          var contactid = $("#contact_id1e").val()
+          var resume_id = $("#resume_ide").val()
+          var status1 = $("#status1e").val()
+          var notesx = $("#notese").val();
+          var rating = $("#ratinge").val()
+
+          console.log("commit button pushed [", id, "] [", userid, "] [", jobtitle, "] [", notesx, "] [", rating, "] ")
+
+          myData = {
+            id: id,
+            user_id1: userid,
+            jobtitle: jobtitle,
+            description: descriptionx,
+            requirement: requirement,
+            location1: location1,
+            company_id: companyid,
+            contact_id: contactid,
+            resume_id: resume_id,
+            status1: status1,
+            notes: notesx,
+            rating: rating
+          }
+
+          console.log(myData)
+
+          $.ajax({
+            url: "/api/job",
+            type: "PUT",
+            data: myData,
+            dataType: "json",
+            success: function (data) {
+              console.log(data);
+              location.reload(); // force reload to see new entry
+            },
+            error: function (error) {
+              console.log("Error ")
+              console.log(error);
+            }
+          });
+        });
+      });
+  });
+
+  });
+</script>

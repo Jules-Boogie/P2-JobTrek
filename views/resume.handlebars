@@ -1,0 +1,160 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <span id="{{reqUser}}">User_ID = {{reqUser}} </span>
+            <i class="fas fa-chevron-right"></i> <a href="/members">Members</a>
+            <i class="fas fa-chevron-right"></i> <a href="/members/maintain">Maintainence</a>
+            <i class="fas fa-chevron-right"></i> <B> Resume </b>
+            <a class="navbar-brand" href="/logout">
+                Logout
+            </a>
+        </div>
+    </div>
+</nav>
+
+{{!-- <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand">Welcome, User! Manage your Resume here.</a>
+    <form class="form-inline">
+
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-info" type="submit">Search</button>
+        <button class="btn btn-light" type="submit">notifications</button>
+    </form>
+</nav> --}}
+
+<div class="container">
+
+
+    <div class="card">
+        <div class="card-body">
+
+            {{> resumep/createResume}}
+
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="stared-tab" data-toggle="tab" href="#stared-resume"
+                        role="tab" aria-controls="stared-resume" aria-selected="true">Stared Resume</a>
+                    <a class="nav-item nav-link" id="all-resume-tab" data-toggle="tab" href="#all-resume" role="tab"
+                        aria-controls="all-resume" aria-selected="false">ALL Resumes</a>
+                </div>
+            </nav>
+
+            <div class="tab-content" id="nav-tabContent">
+
+                <div class="tab-pane  show active " id="stared-resume" role="tabpanel"
+                    aria-labelledby="nav-home-tab ">
+                    
+                    {{#each resume}}
+                    {{#if dataValues.star}}
+                    {{> resumep/starResume}}
+                    {{/if}}
+                    {{/each}}
+
+
+                </div>
+
+                <div class="tab-pane fade" id="all-resume" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    {{#each resume}}
+
+                    {{> resumep/starResume}}
+
+                    {{/each}}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div>
+        <!-- Modal -->
+        <div class="modal fade" id="viewResumeModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <p>Resume Information</p>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <!-- <h4 class="modal-title">Add Resume</h4> -->
+                    </div>
+
+                    <div class="modal-body">
+                        <h1 id="resumeTitle"></h1>
+
+                        <h5>Role:</h5>
+                        <p id="viewRole"></p>
+
+                        <h5>Resume Date:</h5>
+                        <p id="viewDate"></p>
+
+                        <h5>Special Notes:</h5>
+                        <p id="viewNotes"></p>
+
+                        <h5>file location:</h5>
+                        <a id="viewFileLocation"></a>
+
+                    </div>
+                    <div class="modal-footer">
+                        <a id="updateresumecard" type="button" class="btn btn-default" data-toggle="modal"
+                            href="#updateResumeModal" data-dismiss="modal">Update</a>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <!-- Modal update info -->
+        <div class="modal fade" id="updateResumeModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <p>Resume update Information</p>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label>Resume Title</label>
+                                <input id="updateresumeTitle" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Resume main Role</label>
+                                <input id="updateviewRole" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Resume creation date:</label>
+                                <input id="updateviewDate" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Special Notes</label>
+                                <textarea class="form-control" id="updateviewNotes" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>File Location:</label>
+                                <input id="updateviewFileLocation" class="form-control">
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="updateresumecardfinal" type="button" class="btn btn-default"
+                            data-dismiss="modal">Update</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+
+
+<script src="/js/resume.js"></script>

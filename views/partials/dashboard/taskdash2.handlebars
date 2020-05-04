@@ -1,0 +1,40 @@
+<P>This is taskdash partial handlebars</P>
+
+<script>
+  //segment of JS to populate the list
+  $.getJSON("/api/task", function (response, status) {
+    if (status == "success") {
+      console.log(response);
+    }
+  })
+</script>
+
+<div id="inserttable" class="container-fluid">
+  <table class="table" id="results">
+    <thead>
+      <tr>
+        <th>Task Name</th>
+        <th>Job_ID</th>
+        <th>Status</th>
+        <th>Deadline</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each response}}
+
+      <tr>
+        <td>{{task}}</td>
+        <td>{{job_id}}</td>
+        <td>{{task_status}}</td>
+        <td>{{formatdatetiny deadline}}</td>
+      </tr>
+      </tr>
+      {{else}}
+      <tr>
+        <td colspan="5" class="text-center">No data to display.</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+</div>

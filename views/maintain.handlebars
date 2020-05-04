@@ -1,0 +1,47 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      {{!-- <span id="{{reqUser}}">User_ID = {{reqUser}} </span> --}}
+      <i class="fas fa-chevron-right"></i> <a href="/members">Members</a>
+      <i class="fas fa-chevron-right"></i> <B>Maintainence</B>
+      {{!-- <a class="navbar-brand" href="/logout">
+        Logout
+      </a> --}}
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-1">
+      <div class="sidenav container">
+        <a class="row btn-sm btn-primary" href="/members/jobboard">Job Board</a>
+        <a class="row btn-sm btn-info" href="/members/dashboard"> Dashboard</a>
+        <a class="row btn-sm btn-secondary" href="/members/resume"> Resumes</a>
+        <a class="row btn-sm btn-danger" href="/members/maintain"> Maintenance</a>
+        <a class="row btn-sm btn-success" href="/logout"> Logout</a>
+      </div>
+
+    </div>
+    <div class="col-10">
+
+      <div class="alert alert-warning" role="alert">
+        Warning: these buttons will directly edit the related data. There is no undoing changes here! Use with
+        caution! </div>
+
+      <P><a href="/members/company" class="btn btn-lg btn-warning">Company</a></P>
+
+      <P><a href="/members/contact" class="btn btn-lg btn-warning">Contact</a>
+      </P>
+
+      <P><a href="/members/contactlog" class="btn btn-lg btn-warning">Contact Log</a>
+      </P>
+
+      {{!-- <P><a href="/members/job" class="btn btn-lg btn-warning">Job</a>
+      </P> --}}
+
+      <P><a href="/members/task" class="btn btn-lg btn-warning">Task</a></P>
+    </div>
+    <div class="col-1"></div>
+  </div>
+</div>

@@ -1,0 +1,326 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      {{!-- <span id="{{reqUser}}">User_ID = {{reqUser}} </span> --}}
+      <i class="fas fa-chevron-right"></i> <a href="/members">Members</a>
+      <i class="fas fa-chevron-right"></i> <a href="/members/maintain">Maintainence</a>
+      <i class="fas fa-chevron-right"></i> <B> Contact Log </b>
+      {{!-- <a class="navbar-brand" href="/logout">
+        Logout
+      </a> --}}
+    </div>
+  </div>
+</nav>
+
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-1">
+      <div class="sidenav container">
+        <a class="row btn-sm btn-primary" href="/members/jobboard">Job Board</a>
+        <a class="row btn-sm btn-info" href="/members/dashboard"> Dashboard</a>
+        <a class="row btn-sm btn-secondary" href="/members/resume"> Resumes</a>
+        <a class="row btn-sm btn-danger" href="/members/maintain"> Maintenance</a>
+        <a class="row btn-sm btn-success" href="/logout"> Logout</a>
+      </div>
+    </div>
+    <div class="col-10">
+
+      {{!-- <P> CRUD page for Contact_Log</P> --}}
+      <div class="alert alert-warning" role="alert">
+        You are editing the contact_log table directly! There is no undo! Beware!
+      </div>
+
+      {{!-- <P>{{this[0].dataValues}}</P> --}}
+      <table class="text-white table" id="results">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Contact_ID</th>
+            <th>Job_ID</th>
+            <th>Note</th>
+            <th>Timestamp</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each contact_log}}
+
+          <tr>
+            {{!-- <td>{{this}}</td> --}}
+            <td>{{dataValues.id}}</td>
+            <td>{{dataValues.contact_id}}</td>
+            <td>{{dataValues.job_id}}</td>
+            <td>{{dataValues.note}}</td>
+            <td>{{formatdatetiny dataValues.timestamp}}</td>
+            <td>
+              <a href="javascript:void(0);" class="btn btn-sm btn-warning edit" data-id="{{ dataValues.id }}"
+                data-userid="{{../reqUser}}" data-job_id="{{ dataValues.job_id }}"
+                data-contact_id="{{ dataValues.contact_id }}" data-note="{{ dataValues.note }}"
+                data-datestamp="{{ formatdatetiny dataValues.datestamp }}" data-toggle="modal"
+                data-target="#updatecontactModal">Edit</a>
+              <a href="javascript:void(0);" class="btn btn-sm btn-danger delete" data-id="{{ dataValues.id }}"
+                data-userid="{{../reqUser}}">Delete</a>
+            </td>
+          </tr>
+          {{else}}
+          <tr>
+            <td colspan="5" class="text-center">No data to display.</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+
+      <button class="btn btn-success" data-toggle="modal" data-target="#newcontactModal">Add New</button>
+
+      <!--- this is the create form--->
+
+      <form action="/api/contactlog" id="createform" method="post">
+        <div class="modal fade modal-lg" id="newcontactModal" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">New contact Log Entry</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                  <span>&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+
+                <div class="form-group">
+                  <input type="hidden" name="user_id1" id="user_id1" value="{{reqUser}}" class="form-control"
+                    placeholder="" required="required">
+                </div>
+
+                <div class="form-group">
+                  <label for="contact_id">Contact_id (use 0 if not related to specific contact)</label>
+                  <input type="number" id="contact_id" class="form-control" placeholder="contact_id">
+                </div>
+
+                <div class="form-group">
+                  <label for="job_id">Job_ID (use 0 if not related to specific job)</label>
+                  <input type="number" id="job_id" value="0" class="form-control" placeholder="0">
+                </div>
+
+
+                <div class="form-group">
+                  <label for="note">Your notes on this contact log</label>
+                  <input type="text" id="note" class="form-control" placeholder="note">
+                </div>
+
+                <div class="form-group">
+                  <label for="datestamp">Datestamp</label>
+                  <input type="date" id="datestamp" class="form-control">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn create" data-dismiss="modal">Add it</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-1"></div>
+
+  </div>
+</div>
+
+
+<!--- this is the edit form --->
+
+<form action="/api/contactlog" id="updateform" method="put">
+  <div class="modal fade" id="updatecontactModal" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Edit contact log entry</h4>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <div class="form-group">
+            <input type="text" name="id_edit" id="id_edit" value="" class="form-control" placeholder=""
+              required="required" readonly>
+          </div>
+
+          <div class="form-group">
+            <input type="hidden" name="user_id1" id="user_id1_edit" value="{{reqUser}}" class="form-control"
+              placeholder="" required="required">
+          </div>
+
+          <div class="form-group">
+            <label for="contact_id_edit">contact_id</label>
+            <input type="number" id="contact_id_edit" class="form-control" placeholder="contact_id">
+          </div>
+
+          <div class="form-group">
+            <label for="job_id_edit">Job_id</label>
+            <input type="number" id="job_id_edit" class="form-control" placeholder="job_id">
+          </div>
+
+          <div class="form-group">
+            <label for="notes">Your notes on this contact log:</label>
+            <input type="text" id="notes_edit" name="notes_edit" class="form-control" placeholder="notes">
+          </div>
+
+          <div class="form-group">
+            <label for="datestamp_edit">Datestamp</label>
+            <input type="date" id="datestamp_edit" class="form-control">
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn commit" data-dismiss="modal">Commit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<!-- divider -->
+<script>
+  $(document).ready(function () {
+
+    // may want too update this to display job_id/contact_id stuff, or just change query?
+    //segment of JS to populate the list in both create and edit forms
+    //    $.getJSON("/api/company", { user_id: {{ reqUser }} }, function (response, status) {
+    //      if (status == "success") {
+    //console.log(response);
+    //        for (var i = 0; i < response.length; i++) {
+    //          var str = response[i].company
+    //          var sid = response[i].id
+    //          $("#company_id").append("<option value=" + sid + ">" + str + "</option>")
+    //          $("#company_id_edit").append("<option value=" + sid + ">" + str + "</option>")
+    //       }
+    //     }
+    //    });
+
+    // edit button action 
+    $('#results').on('click', '.edit', function () {
+      var id = $(this).data("id");
+      var userid = $(this).data("userid");
+      var contact_id = $(this).data("contact_id");
+      var job_id = $(this).data("job_id");
+      var note = $(this).data("note");
+      var datestamp = $(this).data("datestamp");
+
+      console.log("edit button pushed [", id, "] [", userid, "] [", name, "] [", contact_id, "] [", job_id, "] [", note, "] [", datestamp, "] ")
+
+      // push them into the dialog box
+      $("#id_edit").val(id)
+      $("#user_id1_edit").val(userid)
+      $("#name_edit").val(name)
+      $("#contact_id_edit").val(contact_id)
+      $("#job_id_edit").val(job_id)
+      $("#notes_edit").val(note)
+      $("#datestamp_edit").val(datestamp)
+
+      $('#updateform').on('click', '.commit', function () {
+
+        // now we wait for the commit button to be pushed
+        var idx = $("#id_edit").val()
+        var userid = $("#user_id1_edit").val();
+        var contact_id = $("#contact_id_edit").val();
+        var job_id = $("#job_id_edit").val();
+        var note = $("#notes_edit").val();
+        var datestamp = $("#datestamp_edit").val()
+
+
+        console.log("commit button pushed [", idx, "] [", userid, "] [", contact_id, "] [", job_id, "] [", note, "] [", datestamp, "] ")
+
+
+        $.ajax({
+          url: "/api/contactlog",
+          type: "PUT",
+          data: {
+            id: idx,
+            user_id1: userid,
+            contact_id: contact_id,
+            job_id: job_id,
+            note: note,
+            datestamp: datestamp
+          },
+          dataType: "json",
+          success: function (data) {
+            console.log(data);
+            location.reload();  // force reload to see new entry
+          },
+          error: function (error) {
+            console.log("Error ")
+            console.log(error);
+          }
+        });
+      })
+    });
+
+
+
+
+    // create button action... 
+
+    $('#createform').on('click', '.create', function () {
+
+      var userid = $("#user_id1").val();
+      var contact_id = $("#contact_id").val();
+      var job_id = $("#job_id").val();
+      var note = $("#note").val()
+      var datestamp = $("#datestamp").val()
+      console.log("create button pushed [", userid, "] [", contact_id, "] [", job_id, "] [", note, "] [", datestamp, "] ")
+      $.ajax({
+        url: "/api/contactlog",
+        type: "POST",
+        data: {
+          user_id1: userid,
+          contact_id: contact_id,
+          job_id: job_id,
+          note: note,
+          datestamp: datestamp
+        },
+        dataType: "json",
+        success: function (data) {
+          console.log(data);
+          location.reload();  // force reload to see new entry
+        },
+        error: function (error) {
+          console.log("Error ")
+          console.log(error);
+        }
+      });
+    });
+
+
+
+
+    //delete button action. It works... 
+    $('#results').on('click', '.delete', function () {
+      var id = $(this).data("id");
+      var userid = $(this).data("userid");
+      console.log("delete button pushed [", id, "] [", userid, "]")
+      $.ajax({
+        url: "/api/contactlog",
+        type: "DELETE",
+        data: {
+          user_id: userid,
+          id: id
+        },
+        dataType: "json",
+        success: function (data) {
+          console.log(data);
+          location.reload();  // force reload to see new entry
+
+        },
+        error: function (error) {
+          console.log(`Error ${error}`);
+        }
+      });
+    });
+  });
+
+</script>

@@ -1,0 +1,52 @@
+<div class="cardResume card" style="width: 18rem;">
+    <div class="card-body">
+
+        <h5 class="card-title">{{dataValues.fileName}}</h5>
+        <button type="button" class="starBtn btn" data-id="{{dataValues.id}}" data-star="{{dataValues.star}}">
+            {{#if dataValues.star}}
+
+            <i class='fas fa-star' style='font-size:20px;color:orange'></i>
+
+            {{else}}
+            <i class='far fa-star' style='font-size:20px'></i>
+            {{/if}}
+        </button>
+
+        <p class="card-text">
+        </p>
+
+    </div>
+    <div class="card-footer text-muted">
+
+         {{!-- data-view="{{dataValues.id}}" --}}
+        <p>{{dataValues.role}}</p>
+        {{!-- <button type="button" class="viewResume btn btn-info" data-toggle="modal" data-target="#{{dataValues.id}}"
+           >view</button> --}}
+        <button type="button" class="viewResume btn btn-info" data-toggle="modal" data-target="#viewResumeModal"  data-view="{{dataValues.id}}">view</button>
+
+        <button class="deleteResume btn btn-secondary" data-delete="{{dataValues.id}}">delete</button>
+    </div>
+
+    <!-- Modal -->
+    {{!-- <div class="modal fade" id="{{dataValues.id}}" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <!-- <h4 class="modal-title">Add Resume</h4> -->
+                </div>
+
+                <div class="modal-body">
+                    <h1>{{dataValues.id}} </h1>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div> --}}
+
+
+</div>

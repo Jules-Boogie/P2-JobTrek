@@ -1,0 +1,151 @@
+{{!-- <P>This is taskdash partial handlebars</P> --}}
+
+<!-- "add task" buttoon here? -->
+
+<button class="btn btn-success" data-toggle="modal" data-target="#newTaskModal">Add New Task</button>
+
+<!--- this is the create form--->
+
+<form action="/api/Task" id="createform" method="post">
+  <div class="modal fade" id="newTaskModal" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">New Task</h4>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <div class="form-group">
+            <input type="hidden" name="user_id1" id="user_id1" value="{{reqUser}}" class="form-control" placeholder=""
+              required="required">
+          </div>
+
+          <div class="form-group">
+            <label for="Task">Task Name (required):</label>
+            <input type="text" id="task" class="form-control" placeholder="Task Name" required="required" maxlength=254>
+          </div>
+
+          <div class="form-group">
+            <label for="job_id">job_id (use 0 if not specific job)</label>
+            <input type="number" id="job_id" class="form-control" placeholder="job_id">
+          </div>
+
+          {{!-- <div class="form-group">
+                      <label for="status">Status</label>
+                      <input type="text" id="task_status" class="form-control" placeholder="Status" maxlength=254>
+                    </div> --}}
+
+
+          <label for="task_status">Status</label>
+          <select id="task_status" class="form-control">
+            <option value="Pending">Pending</option>
+            <option value="Completed">Completed</option>
+            <option value="Overdue">Overdue</option>
+          </select>
+
+          <div class="form-group">
+            <label for="task">Deadline</label>
+            <input type="date" id="deadline" class="form-control" placeholder="date">
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn create" data-dismiss="modal">Add it</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+<div id="inserttaskdash" class="container-fluid m-0 p-0">
+
+</div>
+<!-- need moment to parse date client-side -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js" type="text/javascript"></script>
+
+<script>
+  $(document).ready(function () {
+
+    //segment of JS to populate the list
+    $.getJSON("/api/task", function (response, status) {
+      if (status == "success") {
+        console.log(response);
+        tb = document.createElement("table");
+        tb.className = "table"
+        var tr = tb.insertRow(-1);
+        var th = document.createElement("th");
+        th.innerHTML = "Task"
+        tr.appendChild(th);
+        var th = document.createElement("th");
+        th.innerHTML = "Status"
+        tr.appendChild(th);
+        var th = document.createElement("th");
+        th.innerHTML = "Job_ID"
+        tr.appendChild(th);
+        var th = document.createElement("th");
+        th.innerHTML = "Deadline"
+        tr.appendChild(th);
+
+        for (var i = 0; i < response.length; i++) {
+          var trow = tb.insertRow(-1)
+          var task = response[i].task
+          var cell = trow.insertCell(-1);
+          cell.innerHTML = task;
+          var status = response[i].task_status
+          var cell = trow.insertCell(-1);
+          cell.innerHTML = status;
+          var jid = response[i].job_id
+          var cell = trow.insertCell(-1);
+          cell.innerHTML = jid;
+          var deadline = moment(response[i].deadline)
+          var cell = trow.insertCell(-1);
+
+          cell.innerHTML = deadline.format("YYYY-MM-DD");
+          //add color touch
+          //if possible?????
+        }
+        var el = document.getElementById("inserttaskdash")
+        el.innerHTML = "";
+        el.appendChild(tb);
+      }
+    });
+
+    $('#createform').on('click', '.create', function () {
+
+      var userid = $("#user_id").val();
+      var job_id = $("#job_id").val();
+      if (job_id == "") job_id = null
+      var task = $("#task").val();
+      var deadline = $("#deadline").val();
+      var status = $("#task_status").val()
+      console.log("create button pushed [", userid, "] [", task, "] [", job_id, "] [", deadline, "] [", status, "] ")
+      $.ajax({
+        url: "/api/task",
+        type: "POST",
+        data: {
+          user_id: userid,
+          job_id: job_id,
+          task: task,
+          deadline: deadline,
+          task_status: status
+        },
+        dataType: "json",
+        success: function (data) {
+          console.log(data);
+          location.reload();  // force reload to see new entry
+        },
+        error: function (error) {
+          console.log("Error ")
+          console.log(error);
+        }
+      });
+    });
+
+
+  })
+</script>

@@ -1,0 +1,102 @@
+{{!-- <form class="updatejob" action="/api/jobboard" method="put" data-id="{{dataValues.id}}" data-userid="{{../reqUser}}"> --}}
+<form  class="updatejob">
+    <div class="modal fade" id="updateJobModal" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"> Job Info </h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1"> Job Title </label>
+                        <input type="title" class="form-control" id="title" aria-describedby="emailHelp"
+                            placeholder="Job Trek Developer" value="{{dataValues.job_title}}">
+                    </div>
+
+                    {{!-- <div class="form-group">
+        <label for="companylist">Company</label>
+        <select class="form-control" id="companylist">
+            <option>Google</option>
+            <option>JobTrek</option>
+            <option>Trilogy</option>
+            <option>Facebook</option>
+            <option>Twitter</option>
+        </select>
+    </div> --}}
+
+                    <div class="form-group">
+                        <label for="location"> Location </label>
+                        <input type="location" class="form-control" id="title" value="{{dataValues.locate}}"
+                            aria-describedby="emailHelp" placeholder="San Francisco">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jobdescription"> Job Description </label>
+                        <textarea class="form-control" id="jobdescription" rows="3">{{dataValues.describe}}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jobrequirement"> Job Requirement </label>
+                        <textarea class="form-control" id="jobrequirement" rows="3">{{dataValues.require}} </textarea>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="job-url"> Job Post </label>
+                        <input type="job-url" class="form-control" id="job-url" value="{{dataValues.jobUrl}}"
+                            aria-describedby="emailHelp" placeholder="indeed.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jobnotes"> Notes </label>
+                        <textarea class="form-control" id="jobNotes" rows="3">{{dataValues.note}} </textarea>
+                    </div>
+                    <div class="modal-footer" <button type="button" id="updatejob" class="btn btn-primary"> Update Job
+                        </button>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+
+    $(".updatejob").on("submit", function (event) {
+        // Make sure to preventDefault on a submit event.
+        event.preventDefault();
+
+        var updatedData = {
+            job_title: $("#title").val(),
+            describe: $("#jobdescription").val(),
+            require: $("#jobrequirement").val(),
+            locate: $("#location").val(),
+            //status:$("").val()
+            note: $("#jobNotes").val(),
+            jobUrl: $("#jobUrl").val()
+        };
+
+        var id = $(this).data("id");
+
+        // Send the POST request.
+        $.ajax("/api/jobboard/" + id, {
+            type: "PUT",
+            data: updatedData
+        }).then(
+            function () {
+                console.log("updated job");
+                // Reload the page to get the updated list
+                location.assign("/members/jobboard");
+            }
+        );
+    });
+
+
+</script>

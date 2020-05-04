@@ -1,0 +1,114 @@
+<!-- Trigger the modal with a button -->
+<a datatype="button" id="createnewjobcard" class="btn addnewjob btn-primary" data-toggle="modal" data-target="#myaddjobmodal"> Add
+    Job </a>
+
+<!-- Modal -->
+<div class="modal fade" id="myaddjobmodal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <!-- <h4 class="modal-title">Add Resume</h4> -->
+            </div>
+
+            <div class="modal-body">
+
+                <form>
+                    <div class="form-group">
+                        <label for="jobtitle"> Job Title </label>
+                        <input type="title" class="form-control" id="title" aria-describedby="emailHelp"
+                            placeholder="Job Trek Developer">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location"> Location </label>
+                        <input type="location" class="form-control" id="location" aria-describedby="emailHelp"
+                            placeholder="San Francisco">
+                    </div>
+
+                    <div class="form-group">
+                        <label >Company</label>
+                        <select class="form-control" id="companylist">
+                            {{!-- {{#each companies}}
+                            <option>{{dataValues.company}}</option>
+                            {{/each}}  --}}
+                            {{!-- <option id="othercompany">Other</option> --}}
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tasklist"> Task </label>
+                        <select class="form-control" id="tasklist">
+                            {{!-- {{#each tasks}}
+                            <option>{{dataValues.task}}</option>
+                            {{/each}}  --}}
+                            {{!-- <option>Other</option> --}}
+
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label >Resume</label>
+                        <select class="form-control" id="resumelist">
+                            {{!-- {{#each resumes}}
+                            <option>{{dataValues.resume}}</option>
+                            {{/each}} --}}
+                            {{!-- <option> Add new </option> --}}
+                        </select>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="status"> Status </label>
+                        <select id="newjobstatus" class="form-control">
+                            <option>Wishlist</option>
+                            <option>Applied</option>
+                            <option>Response</option>
+                            <option>Interview</option>
+                            <option>Offers</option>
+                            <option>Rejected</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jobdescription"> Job Description </label>
+                        <textarea class="form-control" id="jobdescription" rows="3"> Job Description </textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jobrequirement"> Job Requirement </label>
+                        <textarea class="form-control" id="jobrequirement" rows="3"> Job Requirement </textarea>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="job-url"> Enter Job Post Url </label>
+                        <input type="job-url" class="form-control" id="jobUrl" aria-describedby="emailHelp"
+                            placeholder="indeed.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jobnotes"> Notes </label>
+                        <textarea class="form-control" id="jobNotes" rows="3"> Notes </textarea>
+                    </div>
+                </form>
+
+                <hr>
+                {{!-- <h3>create new resume</h3> --}}
+                <!-- complete new one -->
+                <!-- new version out of an existing one -->
+
+            </div>
+            <div class="modal-footer ">
+                <button type="button" class="btn createJobSubmit btn-primary" id="createJobSubmit" data-dismiss="modal">
+                    Add </button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<hr>

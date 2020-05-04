@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+</head>
+
+<body>
+
+
+
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand">Welcome, User! Manage your Resume here.</a>
+        <form class="form-inline">
+
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-info" type="submit">Search</button>
+            <button class="btn btn-light" type="submit">notifications</button>
+        </form>
+    </nav>
+
+    <div class="container">
+
+
+        <div class="card">
+            <div class="card-body">
+
+
+
+                <div class="container">
+                    <h2>Add New Resume</h2>
+                    <!-- Trigger the modal with a button -->
+                    <button type="button" class="btn btn-info" data-toggle="modal"
+                        data-target="#myModal">ADD</button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <!-- <h4 class="modal-title">Add Resume</h4> -->
+                                </div>
+
+                                <div class="modal-body">
+                                   
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="exampleFormControlFile1">Upload your resume</label>
+                                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                        </div>
+
+                                        <label for="exampleFormControlFile1">Upload link to resume</label>
+                                        <input type="text" class="form-control-file" id="resumeLink">
+                                        <button type="submit" class="btn btn-primary">save</button>
+                                    </form>
+
+                                    <hr>
+                                    <h3>create new resume</h3>
+                                    <!-- complete new one -->
+                                    <!-- new version out of an existing one -->
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="stared-tab" data-toggle="tab" href="#stared-resume"
+                            role="tab" aria-controls="stared-resume" aria-selected="true">Stared Resume</a>
+                        <a class="nav-item nav-link" id="all-resume-tab" data-toggle="tab" href="#all-resume" role="tab"
+                            aria-controls="all-resume" aria-selected="false">ALL Resumes</a>
+                    </div>
+                </nav>
+                <br>
+                <div class="tab-content" id="nav-tabContent">
+
+                    <div id="stared-resume" class="card tab-pane fade show active" style="width: 18rem;">
+
+                        <div class="card-body">
+                            <h5 class="card-title">one</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                            </p>
+
+                        </div>
+                        <div class="card-footer text-muted">
+                            Role
+                            <a href="#" class="btn btn-primary">open</a>
+
+                        </div>
+                    </div>
+
+                    <div id="all-resume" class="card  tab-pane fade" style="width: 18rem;">
+
+                        <div class="card-body">
+                            <h5 class="card-title">two</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                            </p>
+
+                        </div>
+                        <div class="card-footer text-muted">
+                            Role
+                            <a href="#" class="btn btn-primary">open</a>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                were additional information goes
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

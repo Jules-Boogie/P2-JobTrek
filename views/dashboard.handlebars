@@ -1,0 +1,51 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      {{!-- <span id="{{reqUser}}">User_ID = {{reqUser}} </span> --}}
+      <i class="fas fa-chevron-right"></i> <a href="/members">Members</a>
+      <i class="fas fa-chevron-right"></i> <B> Dashboard </b>
+      {{!-- <a class="navbar-brand" href="/logout">
+        Logout
+      </a> --}}
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-1">
+      <div class="sidenav container">
+        <a class="row btn-sm btn-primary" href="/members/jobboard">Job Board</a>
+        <a class="row btn-sm btn-info" href="/members/dashboard"> Dashboard</a>
+        <a class="row btn-sm btn-secondary" href="/members/resume"> Resumes</a>
+        <a class="row btn-sm btn-danger" href="/members/maintain"> Maintenance</a>
+        <a class="row btn-sm btn-success" href="/logout"> Logout</a>
+      </div>
+
+    </div>
+    <div class="col-10">
+      {{!-- <h3>Dashboard</h3>
+
+      <P>Display contact logs and tasks</P>
+
+      <P>Statistics, like (jobs applied), (jobs responded), (jobs interviewed) etc.</P>
+ --}}
+
+      <div class="row m-0 p-0">
+        <div class="col-6 m-0 p-0">
+          {{!-- <h6>Tasks</h6> --}}
+
+          {{> dashboard/taskdash}}
+        </div>
+        {{!-- <div class="col-1"></div> --}}
+        <div class="col-6 m-0 p-0">
+          {{!-- <h6>Contact_Log</h6> --}}
+
+          {{>dashboard/contactlogdash}}
+        </div>
+      </div>
+    </div>
+    <div class="col-1"></div>
+
+  </div>
+</div>

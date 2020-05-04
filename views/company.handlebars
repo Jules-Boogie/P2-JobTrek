@@ -1,0 +1,291 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      {{!-- <span id="user_id_{{reqUser}}">User_ID = {{reqUser}} </span> --}}
+      <i class="fas fa-chevron-right"></i> <a href="/members">Members</a>
+      <i class="fas fa-chevron-right"></i> <a href="/members/maintain">Maintainence</a>
+      <i class="fas fa-chevron-right"></i> <B>Company </B>
+      <input type="hidden" id="user_id" name="user_id" value={{reqUser}}>
+      {{!-- <a class="navbar-brand" href="/logout">
+        Logout
+      </a> --}}
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-1">
+      <div class="sidenav container">
+        <a class="row btn-sm btn-primary" href="/members/jobboard">Job Board</a>
+        <a class="row btn-sm btn-info" href="/members/dashboard"> Dashboard</a>
+        <a class="row btn-sm btn-secondary" href="/members/resume"> Resumes</a>
+        <a class="row btn-sm btn-danger" href="/members/maintain"> Maintenance</a>
+        <a class="row btn-sm btn-success" href="/logout"> Logout</a>
+      </div>
+    </div>
+    <div class="col-10">
+      <div class="alert alert-warning" role="alert">
+        You are editing the company table directly! There is no undo! Beware!
+      </div>
+
+      {{!-- <P>{{this[0].dataValues}}</P> --}}
+      <table class=" text-white table" id="results">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Company Name</th>
+            <th>Notes</th>
+            <th>Rating</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each company}}
+
+          <tr>
+            {{!-- <td>{{this}}</td> --}}
+            <td>{{dataValues.id}}</td>
+            <td>{{dataValues.company}}</td>
+            <td>{{dataValues.notes}}</td>
+            <td>{{dataValues.rating}}</td>
+            <td>
+              <a href="javascript:void(0);" class="btn btn-sm btn-warning edit" data-id="{{ dataValues.id }}"
+                data-userid="{{../reqUser}}" data-company="{{ dataValues.company }}" data-notes="{{ dataValues.notes }}"
+                data-rating="{{ dataValues.rating }}" data-toggle="modal" data-target="#updateCompanyModal">Edit</a>
+              <a href="javascript:void(0);" class="btn btn-sm btn-danger delete" data-id="{{ dataValues.id }}"
+                data-userid="{{../reqUser}}">Delete</a>
+            </td>
+          </tr>
+          {{else}}
+          <tr>
+            <td colspan="5" class="text-center">No data to display.</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+
+      <button class="btn btn-success" data-toggle="modal" data-target="#newCompanyModal">Add New</button>
+
+      <!--- this is the create form--->
+
+      <form action="/api/company" id="createform" method="post">
+        <div class="modal fade" id="newCompanyModal" role="dialog">
+          <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">New Company</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                  <span>&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+
+                <div class="form-group">
+                  <input type="hidden" name="user_id1" id="user_id1" value="{{reqUser}}" class="form-control"
+                    placeholder="" required="required">
+                </div>
+
+                <div class="form-group">
+                  <label for="company">Company Name (required):</label>
+                  <input type="text" name="company" id="company" class="form-control" placeholder="Company Name"
+                    required="required" maxlength=254>
+                </div>
+
+                <div class="form-group">
+                  <label for="notes">Your Notes about this company (any length):</label>
+                  <input type="text" id="notes" name="notes" class="form-control" placeholder="notes">
+                </div>
+
+                <div class="form-group">
+                  <label for="rating">Your rating for this company (0.0 to 5.0)</label>
+                  <input type="range" id="rating" name="rating" class="form-control" placeholder="5.0" min="0" max="5">
+                </div>
+
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn create" data-dismiss="modal">Add it</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <!--- this is the edit form --->
+
+      <form action="/api/company" id="updateform" method="put">
+        <div class="modal fade" id="updateCompanyModal" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Edit Company</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                  <span>&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+
+                <div class="form-group">
+                  <input type="text" name="id_edit" id="id_edit" value="" class="form-control" placeholder=""
+                    required="required" readonly>
+                </div>
+
+                <div class="form-group">
+                  <input type="hidden" name="user_id1" id="user_id1_edit" value="{{reqUser}}" class="form-control"
+                    placeholder="" required="required">
+                </div>
+
+                <div class="form-group">
+                  <label for="company">Company Name (required):</label>
+                  <input type="text" name="company" id="company_edit" class="form-control" placeholder="Company Name"
+                    required="required">
+                </div>
+
+                <div class="form-group">
+                  <label for="notes">Your Notes about this company (any length):</label>
+                  <input type="text" id="notes_edit" name="notes_edit" class="form-control" placeholder="notes">
+                </div>
+
+                <div class="form-group">
+                  <label for="rating">Your Rating (between 0 and 5):</label>
+                  <input type="number" id="rating_edit" name="rating_edit" class="form-control" placeholder="5.0">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn commit" data-dismiss="modal">Save it</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </div>
+    <div class="col-1"></div>
+
+  </div>
+</div>
+
+<!-- divider -->
+<script>
+  $(document).ready(function () {
+
+    // edit button action 
+    $('#results').on('click', '.edit', function () {
+      var id = $(this).data("id");
+      var userid = $(this).data("userid");
+      var company = $(this).data("company");
+      var notes = $(this).data("notes");
+      var rating = $(this).data("rating");
+
+      console.log("edit button pushed [", id, "] [", userid, "] [", company, "] [", notes, "] [", rating, "] ")
+
+      // push them into the dialog box
+      $("#id_edit").val(id)
+      $("#user_id1_edit").val(userid)
+      $("#company_edit").val(company)
+      $("#notes_edit").val(notes)
+      $("#rating_edit").val(rating)
+
+
+      $('#updateform').on('click', '.commit', function () {
+
+
+
+        // now we wait for the commit button to be pushed
+        var idx = $("#id_edit").val()
+        var userid = $("#user_id1_edit").val();
+        var company = $("#company_edit").val();
+        var notes = $("#notes_edit").val();
+        var rating = $("#rating_edit").val()
+
+        console.log("commit button pushed [", idx, "] [", userid, "] [", company, "] [", notes, "] [", rating, "] ")
+
+
+        $.ajax({
+          url: "/api/company",
+          type: "PUT",
+          data: {
+            id: idx,
+            user_id1: userid,
+            company: company,
+            notes: notes,
+            rating: rating
+          },
+          dataType: "json",
+          success: function (data) {
+            console.log(data);
+            location.reload();  // force reload to see new entry
+          },
+          error: function (error) {
+            console.log("Error ")
+            console.log(error);
+          }
+        });
+      })
+    });
+
+
+
+
+    // create button action... 
+
+    $('#createform').on('click', '.create', function () {
+
+      var userid = $("#user_id1").val();
+      var company = $("#company").val();
+      var notes = $("#notes").val();
+      var rating = $("#rating").val()
+      console.log("create button pushed [", userid, "] [", company, "] [", notes, "] [", rating, "] ")
+      $.ajax({
+        url: "/api/company",
+        type: "POST",
+        data: {
+          user_id1: userid,
+          company: company,
+          notes: notes,
+          rating: rating
+        },
+        dataType: "json",
+        success: function (data) {
+          console.log(data);
+          location.reload();  // force reload to see new entry
+        },
+        error: function (error) {
+          console.log("Error ")
+          console.log(error);
+        }
+      });
+    });
+
+
+
+
+    //delete button action. It works... 
+    $('#results').on('click', '.delete', function () {
+      var id = $(this).data("id");
+      var userid = $(this).data("userid");
+      console.log("delete button pushed [", id, "] [", userid, "]")
+      $.ajax({
+        url: "/api/company",
+        type: "DELETE",
+        data: {
+          user_id: userid,
+          id: id
+        },
+        dataType: "json",
+        success: function (data) {
+          console.log(data);
+          location.reload();  // force reload to see new entry
+
+        },
+        error: function (error) {
+          console.log(`Error ${error}`);
+        }
+      });
+    });
+  });
+
+</script>

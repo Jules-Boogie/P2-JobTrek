@@ -1,0 +1,25 @@
+<div class="cardResume card" style="width: 18rem;">
+    <div class="card-body">
+
+        <h5 class="card-title">{{dataValues.fileName}}</h5>
+        <button type="button" class="starBtn btn" data-id="{{dataValues.id}}" data-star="{{dataValues.star}}">
+            {{#if dataValues.star}}
+            
+            <i class='fas fa-star' style='font-size:20px;color:orange'></i>
+           
+             {{else}}
+            <i class='far fa-star' style='font-size:20px'></i>
+             {{/if}}
+        </button>
+
+        <p class="card-text">
+        </p>
+
+    </div>
+    <div class="card-footer text-muted">
+        <p>{{dataValues.role}}</p>
+        <button class="viewResume btn btn-info" data-id="{{dataValues.id}}">view</button>
+        <button class="deleteResume btn btn-secondary" data-id="{{dataValues.id}}">delete</button>
+    </div>
+    
+</div>

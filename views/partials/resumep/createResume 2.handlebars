@@ -1,0 +1,60 @@
+<div class="container">
+    <h2>Add New Resume</h2>
+    <!-- Trigger the modal with a button -->
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">ADD</button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <!-- <h4 class="modal-title">Add Resume</h4> -->
+                </div>
+
+                <div class="modal-body">
+
+                    <form>
+                        {{!-- <div class="form-group">
+                        <label for="exampleFormControlFile1">Upload your resume</label>
+                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                    </div> --}}
+                        <label for="exampleFormControlFile1">Resume Title</label>
+                        <input type="text" class="form-control-file" id="resumetitle">
+
+                        <label for="exampleFormControlFile1">Resume Version</label>
+                        <input type="text" class="form-control-file" id="resumeversion">
+
+                        <label for="exampleFormControlFile1">Main Role for this Resume</label>
+                        <input type="text" class="form-control-file" id="roletitle">
+
+                        <label for="exampleFormControlFile1">Date resume was created</label>
+                        <input type="text" class="form-control-file" id="dateresume">
+
+                        <label for="exampleFormControlFile1">Special Notes</label>
+                        <input type="text" class="form-control-file" id="notesresume">
+
+                        <label for="exampleFormControlFile1">Upload external link of resume</label>
+                        <input type="text" class="form-control-file" id="resumeLink">
+
+                        <button id="createResumeSubmit" type="submit"
+                            class="createResumeSubmit btn btn-secondary">save</button>
+                    </form>
+
+                    <hr>
+                    {{!-- <h3>create new resume</h3> --}}
+                    <!-- complete new one -->
+                    <!-- new version out of an existing one -->
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr>

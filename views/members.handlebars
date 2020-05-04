@@ -1,0 +1,125 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      {{!-- <span id="{{reqUser}}">User_ID = {{reqUser}} </span> --}}
+      <i class="fas fa-chevron-right"></i> <B>Members</B>
+      {{!-- <a class="navbar-brand" href="/logout"> --}}
+      {{!-- Logout
+      </a> --}}
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-1">
+      <div class="sidenav container">
+        <a class="row btn-sm btn-primary" href="/members/jobboard">Job Board</a>
+        <a class="row btn-sm btn-info" href="/members/dashboard"> Dashboard</a>
+        <a class="row btn-sm btn-secondary" href="/members/resume"> Resumes</a>
+        <a class="row btn-sm btn-danger" href="/members/maintain"> Maintenance</a>
+        <a class="row btn-sm btn-success" href="/logout"> Logout</a>
+      </div>
+
+    </div>
+    <div class="col-10">
+
+
+
+      {{!-- <P>Members Main Menu</P> --}}
+
+      {{!-- <P><a href="/members/dashboard">Dashbaord and Tasks</a></P>
+
+      <P><a href="/members/jobboard"> Job Board</a></P>
+
+      <P><a href="/members/maintain">Maintainence</a> (do we need this separate or under Dashboard?</P> --}}
+
+      <div class="card">
+        <div class="card-header">
+          <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" href="#jobboard" role="tab" aria-controls="Job Board" aria-selected="true">Job
+                Board</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#dashboard" role="tab" aria-controls="Dashboard"
+                aria-selected="false">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#resumes" role="tab" aria-controls="resumes" aria-selected="false">Resumes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#maintenance" role="tab" aria-controls="maintenance"
+                aria-selected="false">Maintenance</a>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body">
+          {{!-- <h6 class="card-subtitle mb-2">Our main feature</h6> --}}
+          <h6 class="card-subtitle mb-2">Main Menu for <span class="member-role"></span>
+            <span class="member-name"></span>
+          </h6>
+          <div class="tab-content mt-3">
+            <div class="tab-pane active" id="jobboard" role="tabpanel">
+              <p class="card-text">
+               Use the job board to add and track jobs at different stages of your job application. The job board is a place for users to add information 
+              about a job they want to apply to, jobs they have applied to, and jobs that are in the interview stages. This board is integrated with the resume and maintenance board 
+              so that, the user can track a task, attach a resume, and other information to a specific job application. 
+              </p>
+              <p>
+                To begin, add a resume to the resume board, add some tasks and contacts to the maintenance board. Then, come back to the job board and track a job!
+              </p>
+
+
+              <P><a class="btn btn-primary" href="/members/jobboard">Job Board</a></P>
+
+            </div>
+
+            <div class="tab-pane" id="dashboard" role="tabpanel" aria-labelledby="history-tab">
+              <p class="card-text">
+                Quis incididunt deserunt amet eu dolore sunt. Esse occaecat velit ea enim veniam quis officia enim ea
+                labore. Laboris aliqua enim laboris esse sit nulla deserunt anim ea. Nulla do irure quis laborum ipsum
+                magna ullamco nulla sint. Commodo esse cillum aute magna duis excepteur commodo magna proident enim quis
+                id.
+              </p>
+              <P><a class="btn btn-info" href="/members/dashboard"> Dashboard</a></P>
+
+            </div>
+
+            <div class="tab-pane" id="resumes" role="tabpanel" aria-labelledby="deals-tab">
+              <p class="card-text">
+                Use the Resume section to be able to add and mark important details about different resumes that you might have so you can link them to your job application. 
+                This  will allow you to always know what resume you submitted and have all the needed details about it.
+              </p>
+              <P><a class="btn btn-secondary" href="/members/resume"> Resume</a></P>
+
+            </div>
+
+            <div class="tab-pane" id="maintenance" role="tabpanel" aria-labelledby="maintenance-tab">
+              <p class="card-text">
+                Ex qui qui cupidatat ut cillum aute incididunt. Consectetur labore consequat esse non laborum tempor
+                anim aliqua id ullamco veniam duis. Culpa consequat ex deserunt eu cupidatat laborum amet minim esse
+                ullamco. Aliquip culpa occaecat nulla est cillum commodo excepteur mollit tempor. Dolor irure fugiat
+                culpa cupidatat qui ex. Aute sunt consectetur ea duis voluptate.
+              </p>
+              <P><a class="btn btn-danger" href="/members/maintain"> Maintenance</a></P>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        $('#bologna-list a').on('click', function (e) {
+          e.preventDefault()
+          $(this).tab('show')
+        })
+      </script>
+
+
+    </div>
+    <div class="col-1"></div>
+  </div>
+</div>
+
+<script type="text/javascript" src="js/members.js"></script>
