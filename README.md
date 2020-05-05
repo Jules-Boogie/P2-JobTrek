@@ -1,6 +1,6 @@
 # Introduction
 
-The JobTrek app is used to track job applications. When you are in the middle of the job application process, it can seem confusing and mysterious. It involves keeping track of job applications, resumes, cover letters, recruiters,  Jobtrek wants to help organize the application process by keeping your applications, resume, contacts, interviews, tasks, and cover letter all in one place. 
+The JobTrek app is used to track job applications. When you are in the middle of the job application process, it can seem confusing and mysterious. It involves keeping track of job applications, resumes, cover letters, recruiters,etc. Jobtrek wants to help organize the application process by keeping your applications, resume, contacts, interviews, tasks, and cover letter all in one place. 
 
 
 
