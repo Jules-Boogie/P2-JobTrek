@@ -14,7 +14,7 @@ The JobTrek app is used to track job applications. When you are in the middle of
 | [Nodejs](https://nodejs.org/en/docs/)                                     |             Node.js is designed to build scalable network applications.                 |
 | [Express Handlebars](https://www.npmjs.com/package/express-handlebars)                |  Express-handlebars is a template engine that can manipulate HTML code from the server side using the server side code provided.                   |
 | [MYSQL2](https://www.mysql.com/)                              |           Open source relational database management system.              |
-| [Passport]http://www.passportjs.org/)                              | A very simple, easy to use, authentication middleware for node js                       |
+| [Passport](http://www.passportjs.org/)                              | A very simple, easy to use, authentication middleware for node js                       |
 | [Passport-Local](http://www.passportjs.org/packages/passport-local/)                              |     A passport js local strategy used to authenticated with username and password.               |
 | [Sequelize](https://sequelize.org/)                              |           Promised Based ORM            |
 
