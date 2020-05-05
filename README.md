@@ -9,7 +9,7 @@ The JobTrek app is used to track job applications. When you are in the middle of
  
  ## Deployed Link
 
-[Life Deployed Link](https://jobtrek.herokuapp.com/)
+[Live Deployed Link](https://jobtrek.herokuapp.com/)
 
 
 ## Technologies Used
