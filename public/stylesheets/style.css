@@ -26,3 +26,26 @@ border-top-right-radius: 4px;
   background-image: url("https://img.freepik.com/free-vector/abstract-technology-particle-background_52683-25766.jpg?size=626&ext=jpg") !important;
   background-size: cover;
 }
+
+
+.navbar-brand {
+  width:50px;
+  font-size: 26px;
+}
+ .navbar-brand img {
+  height: 100px;
+  /* put value of image height as your need */
+  float: right;
+  margin-right: 140px;
+  /* margin-right: 7px;  */
+} 
+
+
+.topnav {
+  float: left;
+  color: #f2f2f2;
+  text-align: left;
+  padding: 14px 16px;
+  margin-left: 950px;
+  font-size: 17px;
+}

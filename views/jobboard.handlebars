@@ -1,10 +1,10 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <span id="{{reqUser}}">User_ID = {{reqUser}} </span>
+      <span id="{{reqUser}}"> {{reqUser}} </span>
       <i class="fas fa-chevron-right"></i> <a href="/members">Members</a>
-      <i class="fas fa-chevron-right"></i> <B> Job Board </b>
-      <a class="navbar-brand" href="/logout">
+      <i class="fas fa-chevron-right"></i> <a href="/members/jobboard"> Job Board </a>
+      <i class="fas fa-chevron-right"></i><a class="navbar-brand" href="/logout">
         Logout
       </a>
     </div>
@@ -19,7 +19,7 @@
     </header>
   </div>
   <div class="row bg-black">
-    <div class="col-1">
+    <div class="col-2">
       <div class="sidenav container-fluid">
         <a class="row btn-sm btn-primary" href="/members/jobboard">Job Board</a>
         <a class="row btn-sm btn-dark" href="/members/resume"> Resume</a>
@@ -37,9 +37,9 @@
             <h5 class="text-white"> WISHLIST </h5>
           </div>
 
-          <div class="row">
+          {{!-- <div class="row">
 
-          </div>
+          </div> --}}
 
           <div class="row">
             <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
@@ -55,9 +55,9 @@
             <h5 class="text-white"> APPLIED </h5>
           </div>
 
-          <div class="row">
+          {{!-- <div class="row">
 
-          </div>
+          </div> --}}
 
           <div class="row">
             <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;" class="list-group"
@@ -95,10 +95,10 @@
           <div class="row container">
             <h5 class="text-white"> RESPONSE </h5>
           </div>
-
+{{!-- 
           <div class="row">
 
-          </div>
+          </div> --}}
 
           <div class="row">
             <div style="border-radius: 4px; padding: 3px 3px 40px; overflow: auto; height: 100%;"
@@ -237,13 +237,13 @@
             </div>
           </div>
         </div>
+        
       </div>
     </div>
     <div class="row">
-      <header>
-        
-      </header>
+
     </div>
+    
   </div>
 
 
