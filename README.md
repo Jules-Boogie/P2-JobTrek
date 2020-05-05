@@ -5,7 +5,11 @@ The JobTrek app is used to track job applications. When you are in the middle of
 
 
 # About the Application
- The app has three sections. The kanban style job application dashboard, the resume section which is divided to show your favorite resumes, and the maintenance section where you can track tasks, contacts and companies. The resume section helps you store customized resume for each opportunity. The Job board gives you an overview of your current application process. In the future , we hope that this app can be useful to recruiters looking to track their interview process by tracking the progress of a role they are trying to fill. We also hope that we can develop it to the point where there is a section in the app where users can search for jobs using keywords and a map.  
+ The app has three sections. The kanban style job application dashboard, the resume section which is divided to show your favorite resumes, and the maintenance section where you can track tasks, contacts and companies. The resume section helps you store customized resume for each opportunity. The Job board gives you an overview of your current application process. In the future , we hope that this app can be useful to recruiters looking to track their interview process by tracking the progress of a role they are trying to fill. We also hope that we can develop it to the point where there is a section in the app where users can search for jobs using keywords and a map. 
+ 
+ ## Deployed Link
+
+[Live Deployed Link](https://jobtrek.herokuapp.com/)
 
 
 ## Technologies Used
