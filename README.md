@@ -19,7 +19,16 @@ The JobTrek app is used to track job applications. When you are in the middle of
 | [Sequelize](https://sequelize.org/)                              |           Promised Based ORM            |
 
 
-## Code Snippet
+## Code Highlight
+
+### Edit A Saved Resume
+![App Photo](https://github.com/Jules-Boogie/P2-JobTrek/blob/master/assets/Capture4.PNG)
+
+
+### Add A New Job 
+![App Photo](https://github.com/Jules-Boogie/P2-JobTrek/blob/master/assets/Capture5.PNG)
+
+
 
 
 
@@ -31,7 +40,7 @@ $ npm install express-handlebars
 $ npm install mysql
 $ npm install --save sequelize
 $ npm install passport-local
-
+```
 
 
 
